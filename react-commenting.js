@@ -34,7 +34,7 @@ class Board extends Component{
 
   gamePlay = (index) => {
     // 3) Here: destructuring the state value.
-    const { gameBoard, currentPlayer, winner, clickCount } = this.state
+    const { gameBoard, currentPlayer, winner } = this.state
     // 4) Here: when player clicks the box, if the winner is not declared and box is not already clicked,
     //          set the states with the updated index value and  switch the player.
     if(gameBoard[index] === null && winner === null){
@@ -42,7 +42,6 @@ class Board extends Component{
       this.setState({
         gameBoard: gameBoard,
         currentPlayer: currentPlayer === "🦄" ? "🦆" : "🦄",
-        clickCount: clickCount+1
       })
     }
     if(winner === null){

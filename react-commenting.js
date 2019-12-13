@@ -11,7 +11,7 @@ class App extends Component{
   render(){
     return(
       <div>
-        {/* 1) Here: */}
+        {/* 1) Calling the component Board here, returning the Board class: */}
         <Board />
       </div>
     )
@@ -21,7 +21,10 @@ class App extends Component{
 class Board extends Component{
   constructor(){
     super()
-    // 2) Here:
+    // 2) defining states, 
+    //  1. gameBoard: array of length 9 with all the values null. [null,null,null,null,null,null,null,null,null]
+    //  2. currentPlayer: keeps track of the current player who is playing the game
+    //  3. winner: keeps track of the player who is winning.
     this.state = {
       gameBoard: Array(9).fill(null),
       currentPlayer: "🦄",
@@ -30,9 +33,10 @@ class Board extends Component{
   }
 
   gamePlay = (index) => {
-    // 3) Here:
+    // 3) Here: destructuring the state value.
     const { gameBoard, currentPlayer, winner, clickCount } = this.state
-    // 4) Here:
+    // 4) Here: when player clicks the box, if the winner is not declared and box is not already clicked,
+    //          set the states with the updated index value and  switch the player.
     if(gameBoard[index] === null && winner === null){
       gameBoard[index] = currentPlayer
       this.setState({
@@ -42,7 +46,7 @@ class Board extends Component{
       })
     }
     if(winner === null){
-      // 5) Here:
+      // 5) Here: check the winning conditions, it winner is not already declared.
       this.winning()
     }
   }
@@ -62,7 +66,7 @@ class Board extends Component{
     winningConditions.map(value => {
       const [a, b, c] = value
       if(gameBoard[a] && gameBoard[a] === gameBoard[b] && gameBoard[a] === gameBoard[c]){
-        // 6) Here:
+        // 6) Here: check the winning conditions by mapping through the winning condiditons and checking the          gameboards, if is is met set the winner state to current player.
         this.setState({
           winner: currentPlayer
         })
@@ -72,14 +76,14 @@ class Board extends Component{
 
   render(){
     const { gameBoard, currentPlayer, winner } = this.state
-    // 7) Here:
+    // 7) Here: structuring the game board, by structuring the squares one by one. Passing the index and value.
     let mappedGameBoard = gameBoard.map((value, index) => {
       return(
         <Square
           value={ value }
           index={ index }
           key={ index }
-          {/* 8) Here: */}
+          /* 8) Here: passing the gameplay function, so that it can be called when the box is clicked*/
           gamePlay={ this.gamePlay }
         />
       )
@@ -89,17 +93,17 @@ class Board extends Component{
         <h1>Tic Tac Toe</h1>
 
           <div className="statusDiv">
-            {/* 9) Here: */}
+            {/* 9) Here: displaying the current player on board */}
             The Current Player is: { currentPlayer }
           </div>
 
           <div className="statusDiv">
-            {/* 10) Here: */}
+            {/* 10) Here:  displaying the winner */}
             The Winner is: { winner }
           </div>
 
           <div id="outcomeBoard">
-            {/* 11) Here: */}
+            {/* 11) Here:display the squares. */}
             { mappedGameBoard }
           </div>
 
@@ -111,14 +115,14 @@ class Board extends Component{
 class Square extends Component{
 
   handleSquareClick = () => {
-    // 12) Here:
+    // 12) Here: call the gameplay function when the box is clicked
     this.props.gamePlay(this.props.index)
   }
 
   render(){
     return(
       <div id="square" onClick={ this.handleSquareClick }>
-        {/* 13) Here: */}
+        {/* 13) Here:  displaying the value on the square board. */}
         { this.props.value }
       </div>
     )

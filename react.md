@@ -9,9 +9,9 @@ Answer the following questions. First, without external resources. Challenge you
 - React will only render on the server using Node.js (true/false)
 - React is a full stack framework for modern web applications (true/false)
 - React is a flexible library that plays the role of V in an MVC framework (true/false)
-- You should always update a component's state directly using this.state (true/false)
+- You should always update a component's state directly using this.state (true/false) false
 - React is made up of encapsulated components that manage their own state (true/false)
-- React components render HTML (true/false)
+- React components render HTML (true/false) true
 
 
 2. What are "smart" and "dumb" components? Explain the difference and also add why we bother to make the distinction between them.

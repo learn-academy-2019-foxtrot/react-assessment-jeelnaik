@@ -30,10 +30,10 @@ for(let i=0; i<names.length; i++){
   console.log(`${names[i]} is ${names[i].length} characters long.`)
 }
 
-let name = names.map((value,index)=>{
+let names_array = names.map((value,index)=>{
   return `${value} is ${value.length} characters long.`
 })
-console.log(name)
+console.log(names_array)
 
 // 3. Destructure the following variables out of state.
 
